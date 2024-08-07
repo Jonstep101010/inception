@@ -1,10 +1,35 @@
+version: '3.9'
+
 services:
   nginx:
-    build:
-      context: ./requirements/nginx
+    container_name: nginx
+    build: ./requirements/nginx
+    image: nginx
+    ports:
+      - "443:443"
+    networks:
+      - inception
+    restart: always
   wordpress:
-    build:
-      context: ./requirements/wordpress
+    container_name: wordpress
+    build: ./requirements/wordpress
+    image: wordpress
+    networks:
+      - inception
+    restart: always
   mariadb:
-    build:
-      context: ./requirements/mariadb
+    container_name: mariadb
+    build: ./requirements/mariadb
+    image: mariadb
+    networks:
+      - inception
+    ports:
+      - "3306:3306"
+    restart: always
+
+volumes:
+  database:
+  website:
+networks:
+  inception:
+    driver: bridge
