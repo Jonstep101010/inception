@@ -1,2 +1,4 @@
 *.pdf
-srcs/.env
+**/.env
+.DS_Store
+
