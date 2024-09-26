@@ -10,6 +10,5 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
 COPY ./nginx.conf /etc/nginx/nginx.conf
 COPY --chown=777 ./index.html /var/www/wordpress/index.html
 
-# remove http default config when done @follow-up
-EXPOSE 80 443
+EXPOSE 443
 ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
