@@ -12,6 +12,7 @@ fclean: clean
 
 nuke: fclean
 	yes | docker system prune -a
+	$(MAKE) run
 
 re: fclean run
 
