@@ -22,8 +22,7 @@ RUN apk add \
 	php82-ctype \
 	php82-session
 
-COPY ./tools/wordpress_setup.sh /usr/local/bin/wordpress_setup.sh
-RUN chmod +x /usr/local/bin/wordpress_setup.sh
+COPY --chmod=777 ./tools/wordpress_setup.sh /usr/local/bin/wordpress_setup.sh
 
 RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 RUN chmod +x wp-cli.phar

@@ -8,7 +8,8 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
     -subj "/C=${COUNTRY}/ST=${STATE}/L=${CITY}/O=${ORGANIZATION}/OU=${UNIT_NAME}/CN=${COMMON_NAME}"
 
 COPY ./nginx.conf /etc/nginx/nginx.conf
-COPY --chown=777 ./index.html /var/www/wordpress/index.html
+# testing static page
+# COPY --chown=777 ./index.html /var/www/wordpress/index.html
 
 EXPOSE 443
 ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
