@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ config.title }}{% endblock title %}</title>
+    <link rel="stylesheet" href="{{ get_url(path="style.css") | safe }}">
+</head>
+<body>
+    <header>
+        <h1>{{ config.title }}</h1>
+        <nav>
+            <!-- Add navigation items here -->
+            <a href="{{ get_url(path='@/_index.md') }}" class="button-primary">Home</a>
+            <a href="{{ get_url(path='@/cv.md') }}" class="button-primary" target="_blank" rel="noopener noreferrer">CV</a>
+            <a href="https://gh.jschwabe.site" class="button-primary" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="{{ get_url(path='@/projects.md') }}" class="button-primary" target="_blank" rel="noopener noreferrer">Projects</a>
+
+        </nav>
+    </header>
+    
+    <main>
+        {% block content %}{% endblock content %}
+    </main>
+    <footer>
+        <p>© {{ now() | date(format="%Y") }} {{ config.author }}</p>
+    </footer>
+</body>
+</html>
