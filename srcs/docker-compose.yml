@@ -54,6 +54,23 @@ services:
     restart: always
     ports:
       - "8080:8080"
+  vsftpd:
+    container_name: vsftpd
+    build: 
+      context: ./requirements/vsftpd
+      args:
+        - FTP_USER=${FTP_USER}
+        - FTP_PASS=${FTP_PASS}
+    restart: always
+    ports:
+      - "21:21"
+      - "30000-30009:30000-30009"
+    volumes:
+      - website:/home/${FTP_USER}/ftp/files
+    networks:
+      - inception
+    env_file:
+      - .env
 
 volumes:
   database:

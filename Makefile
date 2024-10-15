@@ -1,5 +1,5 @@
 run:
-	cd srcs && docker compose up -d
+	cd srcs && docker compose build && docker compose up --remove-orphans -d
 
 down:
 	cd srcs && docker compose down
