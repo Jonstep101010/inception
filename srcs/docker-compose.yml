@@ -1,6 +1,14 @@
 version: '3.9'
 
 services:
+  redis:
+    container_name: redis
+    build: ./requirements/redis
+    networks:
+      - inception
+    restart: always
+    volumes:
+      - redis_cache:/data
   nginx:
     container_name: nginx
     build: ./requirements/nginx
@@ -86,6 +94,8 @@ volumes:
     name: ${MARIADB_VOLUME}
   website:
     name: ${WORDPRESS_VOLUME}
+  redis_cache:
+    name: ${REDIS_VOLUME}
 networks:
   inception:
     driver: bridge

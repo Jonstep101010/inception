@@ -24,6 +24,17 @@ if [ ! -f wp-config.php ]; then
     # set wp home and siteurl
     wp option update home $WP_URL
     wp option update siteurl $WP_URL
+
+    ## bonus
+    # install & configure redis
+    wp plugin install redis-cache --activate --allow-root
+    wp config set WP_REDIS_HOST redis --allow-root
+    wp config set WP_REDIS_PORT 6379 --allow-root
+    wp config set WP_CACHE_KEY_SALT $WORDPRESS_VOLUME --allow-root
+
+    # enable & check redis
+    wp redis enable --allow-root
+    wp redis status --allow-root
 fi
 
 # start FastCGI in foreground
