@@ -20,7 +20,9 @@ RUN apk add \
 	php82-exif \
 	php82-intl \
 	php82-ctype \
-	php82-session
+	php82-session \
+	php82-tokenizer \
+	redis
 
 COPY --chmod=777 ./tools/wordpress_setup.sh /usr/local/bin/wordpress_setup.sh
 
