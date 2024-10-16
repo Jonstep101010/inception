@@ -1,14 +1,6 @@
 version: '3.9'
 
 services:
-  redis:
-    container_name: redis
-    build: ./requirements/redis
-    networks:
-      - inception
-    restart: always
-    volumes:
-      - redis_cache:/data
   nginx:
     container_name: nginx
     build: ./requirements/nginx
@@ -88,6 +80,14 @@ services:
       timeout: 30s
       retries: 5
       start_period: 30s
+  redis:
+    container_name: redis
+    build: ./requirements/redis
+    networks:
+      - inception
+    restart: always
+    volumes:
+      - redis_cache:/data
 
 volumes:
   database:
