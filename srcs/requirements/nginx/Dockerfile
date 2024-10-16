@@ -12,4 +12,5 @@ COPY ./nginx.conf /etc/nginx/nginx.conf
 # COPY --chown=777 ./index.html /var/www/html/index.html
 
 EXPOSE 443
+EXPOSE 8081
 ENTRYPOINT [ "nginx", "-g", "daemon off;" ]

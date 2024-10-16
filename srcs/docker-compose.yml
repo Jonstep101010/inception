@@ -6,6 +6,7 @@ services:
     build: ./requirements/nginx
     ports:
       - "443:443"
+      - "8081:8081"
     env_file:
       - .env
     volumes:
@@ -88,6 +89,12 @@ services:
     restart: always
     volumes:
       - redis_cache:/data
+  adminer:
+    container_name: adminer
+    build: ./requirements/adminer
+    networks:
+      - inception
+    restart: always
 
 volumes:
   database:
