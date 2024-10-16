@@ -29,15 +29,15 @@ COPY --chmod=777 ./tools/wordpress_setup.sh /usr/local/bin/wordpress_setup.sh
 RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 RUN chmod +x wp-cli.phar
 RUN mv wp-cli.phar /usr/local/bin/wp
-WORKDIR /var/www/wordpress 
-RUN wp core download --path=/var/www/wordpress --version=6.5.2
+WORKDIR /var/www/html 
+RUN wp core download --path=/var/www/html --version=6.5.2
 
 # provide config file
 COPY www.conf /etc/php82/php-fpm.d/www.conf
 # create wp-data user and group
 RUN addgroup -S wp-data && adduser -S wp-data -G wp-data
 # allow log directory access
-RUN chown -R wp-data:wp-data /var/log/php82 /var/www/wordpress
+RUN chown -R wp-data:wp-data /var/log/php82 /var/www/html
 USER wp-data
 
 EXPOSE 9000

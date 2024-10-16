@@ -9,7 +9,7 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
 
 COPY ./nginx.conf /etc/nginx/nginx.conf
 # testing static page
-# COPY --chown=777 ./index.html /var/www/wordpress/index.html
+# COPY --chown=777 ./index.html /var/www/html/index.html
 
 EXPOSE 443
 ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
