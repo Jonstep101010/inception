@@ -1,8 +1,8 @@
 FROM alpine:3.19
 
-RUN apk update && apk add --no-cache php php-mysqli php-session curl
+RUN apk update && apk add php php-mysqli php-session curl openssl
 
-ADD --chmod=755 https://www.adminer.org/latest.php /var/www/html/adminer.php
+ADD --chmod=755 https://github.com/vrana/adminer/releases/download/v4.8.1/adminer-4.8.1.php /var/www/html/adminer.php
 EXPOSE 81
 
 # set permissions
