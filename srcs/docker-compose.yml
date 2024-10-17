@@ -32,6 +32,8 @@ services:
     depends_on:
       mariadb:
         condition: service_healthy
+      redis:
+        condition: service_healthy
   mariadb:
     container_name: mariadb
     build: ./requirements/mariadb
@@ -89,6 +91,12 @@ services:
     restart: always
     volumes:
       - redis_cache:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 0s
   adminer:
     container_name: adminer
     build: ./requirements/adminer
