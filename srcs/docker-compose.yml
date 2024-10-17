@@ -95,6 +95,27 @@ services:
     networks:
       - inception
     restart: always
+  # useful extra service: logging
+  prometheus:
+    container_name: prometheus
+    build: ./requirements/logs/prometheus
+    networks:
+      - inception
+    ports:
+      - "9090:9090"
+    restart: always
+  mariadb-exporter:
+    container_name: mariadb-exporter
+    build: ./requirements/logs/mariadb-exporter
+    environment:
+      DATA_SOURCE_NAME: "${EXPORTER_USER}:${EXPORTER_PASS}@(mariadb:3306)/"
+    env_file:
+      - .env
+    networks:
+      - inception
+    ports:
+      - "9104:9104"
+    restart: always
 
 volumes:
   database:

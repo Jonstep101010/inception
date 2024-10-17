@@ -7,7 +7,12 @@ if [ ! -d "/var/lib/mysql/${DB_NAME}" ]; then
 	FLUSH PRIVILEGES;
 	CREATE DATABASE IF NOT EXISTS \`${DB_NAME}\`;
 	CREATE USER IF NOT EXISTS '${DB_USER}'@'%' IDENTIFIED BY '${DB_PASS}';
-	GRANT ALL PRIVILEGES on \`${DB_NAME}\`.* TO '${DB_USER}'@'%';
+	GRANT ALL PRIVILEGES on \`${DB_NAME}\`.* TO '${DB_USER}'@'%' WITH GRANT OPTION;
+	FLUSH PRIVILEGES;
+	GRANT SLAVE MONITOR ON *.* TO '${DB_USER}'@'localhost' IDENTIFIED BY '${DB_PASS}';
+	GRANT PROCESS ON *.* TO '${DB_USER}'@'%';
+	GRANT ALL ON *.* TO 'dbuser'@'%';
+	GRANT ALL ON *.* TO 'dbuser'@'localhost';
 	FLUSH PRIVILEGES;
 EOF
 else
