@@ -107,8 +107,6 @@ services:
   mariadb-exporter:
     container_name: mariadb-exporter
     build: ./requirements/logs/mariadb-exporter
-    environment:
-      DATA_SOURCE_NAME: "${EXPORTER_USER}:${EXPORTER_PASS}@(mariadb:3306)/"
     env_file:
       - .env
     networks:
