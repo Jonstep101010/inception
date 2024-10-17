@@ -121,6 +121,8 @@ services:
     depends_on:
       adminer:
         condition: service_healthy
+      mariadb-exporter:
+        condition: service_healthy
   mariadb-exporter:
     container_name: mariadb-exporter
     build: ./requirements/logs/mariadb-exporter
@@ -131,6 +133,15 @@ services:
     ports:
       - "9104:9104"
     restart: always
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl",  "-f", "http://localhost:9104"]
+      interval: 10s
+      timeout: 30s
+      retries: 5
+      start_period: 0s
 
 volumes:
   database:
