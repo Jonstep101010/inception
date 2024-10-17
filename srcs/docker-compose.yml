@@ -6,7 +6,7 @@ services:
     build: ./requirements/nginx
     ports:
       - "443:443"
-      - "8081:8081"
+      - "81:81"
     env_file:
       - .env
     volumes:
@@ -95,6 +95,12 @@ services:
     networks:
       - inception
     restart: always
+    healthcheck:
+      test: ["CMD", "curl",  "-f", "http://nginx:81"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 10s
   # useful extra service: logging
   prometheus:
     container_name: prometheus
@@ -104,6 +110,9 @@ services:
     ports:
       - "9090:9090"
     restart: always
+    depends_on:
+      adminer:
+        condition: service_healthy
   mariadb-exporter:
     container_name: mariadb-exporter
     build: ./requirements/logs/mariadb-exporter
