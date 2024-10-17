@@ -1,7 +1,5 @@
 #!/bin/sh
 
-# Set the MySQL data source name (DSN)
-export DATA_SOURCE_NAME="${EXPORTER_USER}:${EXPORTER_PASS}@(mariadb:3306)/"
-
+export MYSQLD_EXPORTER_PASSWORD=${EXPORTER_PASS}
 # Run mysqld_exporter
-exec /usr/local/bin/mysqld_exporter
+exec /usr/local/bin/mysqld_exporter --mysqld.address=mariadb:3306 --mysqld.username=${EXPORTER_USER}
