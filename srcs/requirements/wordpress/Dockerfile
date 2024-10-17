@@ -26,11 +26,10 @@ RUN apk add \
 
 COPY --chmod=777 ./tools/wordpress_setup.sh /usr/local/bin/wordpress_setup.sh
 
-RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-RUN chmod +x wp-cli.phar
-RUN mv wp-cli.phar /usr/local/bin/wp
-WORKDIR /var/www/html 
-RUN wp core download --path=/var/www/html --version=6.5.2
+ADD --chmod=777 https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar /usr/local/bin/
+RUN mv /usr/local/bin/wp-cli.phar /usr/local/bin/wp
+WORKDIR /var/www/html
+RUN wp core download --version=6.5.2
 
 # provide config file
 COPY www.conf /etc/php82/php-fpm.d/www.conf
