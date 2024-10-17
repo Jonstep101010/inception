@@ -104,7 +104,7 @@ services:
       - inception
     restart: always
     healthcheck:
-      test: ["CMD", "curl",  "-f", "http://nginx:81"]
+      test: ["CMD", "curl",  "-f", "http://nginx:81/adminer.php"]
       interval: 10s
       timeout: 10s
       retries: 5
