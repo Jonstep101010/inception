@@ -1,6 +1,9 @@
 run:
 	cd srcs && docker compose build && docker compose up --remove-orphans -d
 
+mariadb-health:
+	cd srcs && docker compose exec mariadb mysqladmin ping -h localhost
+
 down:
 	cd srcs && docker compose down
 
