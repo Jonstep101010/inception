@@ -9,5 +9,5 @@
 2. enter `$WP_ADMIN_EMAIL` and `$WP_ADMIN_PASS`
 
 ## adminer login
-1. visit [https://localhost:8081]()
+1. visit [http://localhost:81/adminer.php]()
 2. enter server `mariadb`, user `$DB_USER`, `$DB_PASS` and `$DB_NAME`
