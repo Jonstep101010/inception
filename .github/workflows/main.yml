@@ -41,5 +41,7 @@ jobs:
         echo "REDIS_VOLUME=${{ vars.REDIS_VOLUME }}" >> srcs/.env
         echo "EXPORTER_USER=${{ vars.EXPORTER_USER }}" >> srcs/.env
         echo "EXPORTER_PASS=${{ vars.EXPORTER_PASS }}" >> srcs/.env
+    - name: Print environment variables
+      run: cat srcs/.env
     - name: Build the docker containers
       run: cd srcs && docker compose build && docker compose up --remove-orphans -d
