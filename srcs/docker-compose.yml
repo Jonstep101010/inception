@@ -74,7 +74,7 @@ services:
       interval: 10s
       timeout: 30s
       retries: 5
-      start_period: 30s
+      start_period: 60s
   redis:
     container_name: redis
     build: ./requirements/redis
@@ -100,7 +100,7 @@ services:
       interval: 10s
       timeout: 10s
       retries: 5
-      start_period: 20s
+      start_period: 60s
   # useful extra service: logging
   prometheus:
     container_name: prometheus

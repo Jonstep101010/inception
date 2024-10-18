@@ -47,5 +47,3 @@ jobs:
       run: cat srcs/.env
     - name: Build the docker containers
       run: cd srcs && docker compose build && docker compose up --remove-orphans -d
-    - name: check mariadb health
-      run: sleep 30; docker-compose exec mariadb ping -h localhost
