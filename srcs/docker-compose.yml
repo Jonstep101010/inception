@@ -29,7 +29,7 @@ services:
     restart: always
     depends_on:
       mariadb:
-        condition: service_healthy
+        condition: service_started
       redis:
         condition: service_healthy
   mariadb:
@@ -44,12 +44,6 @@ services:
     ports:
       - "3306:3306"
     restart: always
-    healthcheck:
-      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
-      interval: 10s
-      timeout: 10s
-      retries: 5
-      start_period: 30s
 
   # Bonus
   portfolio-zola:
