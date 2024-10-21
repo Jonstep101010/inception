@@ -17,33 +17,27 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - name: setup database password
+      run: echo -n "${{ secrets.DB_PASS }}" >> srcs/secrets/database_password
+    - name: setup wp user password
+      run: echo -n "${{ secrets.WP_USER_PASS }}" >> srcs/secrets/wp_user_password
+    - name: setup wp admin password
+      run: echo -n "${{ secrets.WP_ADMIN_PASS }}" >> srcs/secrets/wp_admin_password
+    - name: setup ftp password
+      run: echo -n "${{ secrets.FTP_PASS }}" >> srcs/secrets/ftp_password
     - name: Write variables to .env file
       run: |
         echo "DB_NAME=${{ vars.DB_NAME }}" >> srcs/.env
         echo "DB_USER=${{ vars.DB_USER }}" >> srcs/.env
-        echo "DB_PASS=${{ vars.DB_PASS }}" >> srcs/.env
         echo "WP_TITLE=${{ vars.WP_TITLE }}" >> srcs/.env
         echo "WP_URL=${{ vars.WP_URL }}" >> srcs/.env
         echo "WP_ADMIN_USER=${{ vars.WP_ADMIN_USER }}" >> srcs/.env
-        echo "WP_ADMIN_PASS=${{ vars.WP_ADMIN_PASS }}" >> srcs/.env
         echo "WP_ADMIN_EMAIL=${{ vars.WP_ADMIN_EMAIL }}" >> srcs/.env
         echo "WP_USER=${{ vars.WP_USER }}" >> srcs/.env
-        echo "WP_USER_PASS=${{ vars.WP_USER_PASS }}" >> srcs/.env
         echo "WP_USER_EMAIL=${{ vars.WP_USER_EMAIL }}" >> srcs/.env
         echo "FTP_USER=${{ vars.FTP_USER }}" >> srcs/.env
-        echo "FTP_PASS=${{ vars.FTP_PASS }}" >> srcs/.env
-        echo "COUNTRY=${{ vars.COUNTRY }}" >> srcs/.env
-        echo "STATE=${{ vars.STATE }}" >> srcs/.env
-        echo "CITY=${{ vars.CITY }}" >> srcs/.env
-        echo "ORGANIZATION=${{ vars.ORGANIZATION }}" >> srcs/.env
-        echo "UNIT_NAME=${{ vars.UNIT_NAME }}" >> srcs/.env
-        echo "COMMON_NAME=${{ vars.COMMON_NAME }}" >> srcs/.env
         echo "MARIADB_VOLUME=${{ vars.MARIADB_VOLUME }}" >> srcs/.env
         echo "WORDPRESS_VOLUME=${{ vars.WORDPRESS_VOLUME }}" >> srcs/.env
         echo "REDIS_VOLUME=${{ vars.REDIS_VOLUME }}" >> srcs/.env
-        echo "EXPORTER_USER=${{ vars.EXPORTER_USER }}" >> srcs/.env
-        echo "EXPORTER_PASS=${{ vars.EXPORTER_PASS }}" >> srcs/.env
-    - name: Print environment variables
-      run: cat srcs/.env
     - name: Build the docker containers
       run: cd srcs && docker compose build && docker compose up --remove-orphans -d
