@@ -6,11 +6,11 @@
 ## wordpress admin login
 
 1. visit [https://$WP_URL/wp-admin]()
-2. enter `$WP_ADMIN_EMAIL` and `$WP_ADMIN_PASS`
+2. enter `$WP_ADMIN_EMAIL` and [WP_ADMIN_PASS](./srcs/secrets/wp_admin_password)
 
 ## adminer login
 1. visit [http://localhost:81/adminer.php]()
-2. enter server `mariadb`, user `$DB_USER`, `$DB_PASS` and `$DB_NAME`
+2. enter server `mariadb`, user `$DB_USER`, [DB_PASS](./srcs/secrets/database_password) and `$DB_NAME`
 
 ## prometheus
 1. visit [http://localhost:9090]()
