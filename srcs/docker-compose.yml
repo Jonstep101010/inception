@@ -1,4 +1,6 @@
 secrets:
+  database_password:
+    file: ./secrets/database_password
   wp_user_password:
     file: ./secrets/wp_user_password
   wp_admin_password:
@@ -29,6 +31,7 @@ services:
     env_file:
       - .env
     secrets:
+      - database_password
       - wp_user_password
       - wp_admin_password
     volumes:
@@ -46,6 +49,8 @@ services:
     build: ./requirements/mariadb
     env_file:
       - .env
+    secrets:
+      - database_password
     volumes:
       - database:/var/lib/mysql
     networks:
@@ -129,6 +134,8 @@ services:
     build: ./requirements/logs/mariadb-exporter
     env_file:
       - .env
+    secrets:
+      - database_password
     networks:
       - inception
     ports:

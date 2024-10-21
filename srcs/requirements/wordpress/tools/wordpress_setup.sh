@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # Read secrets
+DB_PASS=$(cat /run/secrets/database_password)
 WP_USER_PASS=$(cat /run/secrets/wp_user_password)
 WP_ADMIN_PASS=$(cat /run/secrets/wp_admin_password)
 
@@ -10,7 +11,7 @@ if [ ! -f wp-config.php ]; then
         --url=$WP_URL \
         --dbname=$DB_NAME \
         --dbuser=$DB_USER \
-        --dbpass=$DB_PASS \
+        --dbpass="${DB_PASS}" \
         --dbhost=mariadb:3306
     # install & configure wordpress
     wp core install --url=$WP_URL \

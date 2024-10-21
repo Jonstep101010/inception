@@ -8,6 +8,6 @@ RUN tar -xzf /tmp/mysqld_exporter-0.15.1.linux-amd64.tar.gz && mv mysqld_exporte
 
 EXPOSE 9104
 
-COPY .my.cnf /etc/.my.cnf
+COPY --chmod=777 exporter.sh /usr/local/bin/exporter.sh
 
-ENTRYPOINT [ "/usr/local/bin/mysqld_exporter", "--config.my-cnf=/etc/.my.cnf" ]
+ENTRYPOINT [ "exporter.sh" ]

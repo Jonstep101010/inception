@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Read secrets
+DB_PASS=$(cat /run/secrets/database_password)
+
 # if the database directory does not exist
 if [ ! -d "/var/lib/mysql/${DB_NAME}" ]; then
 	# pass configuration to the database daemon
