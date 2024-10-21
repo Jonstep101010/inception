@@ -2,3 +2,5 @@
 **/.env
 .DS_Store
 *.code-workspace
+srcs/secrets/wp_admin_password
+srcs/secrets/wp_user_password
