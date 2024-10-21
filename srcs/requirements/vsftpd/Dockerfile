@@ -7,10 +7,7 @@ COPY --chown=root:root vsftpd.conf /etc/vsftpd.conf
 EXPOSE 20 21 30000-30009
 
 ARG FTP_USER
-ARG FTP_PASS
 RUN useradd -m $FTP_USER
-# set password for $FTP_USER
-RUN echo "$FTP_USER:$FTP_PASS" | chpasswd
 # add user to vsftpd userlist
 RUN echo "$FTP_USER" >> /etc/vsftpd.userlist
 
@@ -24,4 +21,6 @@ RUN chown $FTP_USER:$FTP_USER /home/$FTP_USER/ftp/files
 # append expanded value of $FTP_USER/ftp to local_root=/home/
 RUN echo "${FTP_USER}/ftp" >> /etc/vsftpd.conf
 
-ENTRYPOINT ["/usr/sbin/vsftpd",  "/etc/vsftpd.conf" ]
+COPY --chmod=755 ftp_init.sh /usr/local/bin/ftp_init.sh
+
+ENTRYPOINT [ "ftp_init.sh" ]

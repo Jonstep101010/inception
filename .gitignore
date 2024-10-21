@@ -5,3 +5,4 @@
 srcs/secrets/database_password
 srcs/secrets/wp_admin_password
 srcs/secrets/wp_user_password
+srcs/secrets/ftp_password

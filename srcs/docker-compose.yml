@@ -5,6 +5,8 @@ secrets:
     file: ./secrets/wp_user_password
   wp_admin_password:
     file: ./secrets/wp_admin_password
+  ftp_password:
+    file: ./secrets/ftp_password
 
 services:
   nginx:
@@ -72,7 +74,6 @@ services:
       context: ./requirements/vsftpd
       args:
         - FTP_USER=${FTP_USER}
-        - FTP_PASS=${FTP_PASS}
     restart: always
     ports:
       - "21:21"
@@ -83,8 +84,10 @@ services:
       - inception
     env_file:
       - .env
+    secrets:
+      - ftp_password
     healthcheck:
-      test: ["CMD-SHELL", "curl -f ftp://${FTP_USER}:${FTP_PASS}@localhost:21 || exit 1"]
+      test: ["CMD-SHELL", "curl -f ftp://${FTP_USER}:$(cat /run/secrets/ftp_password)@localhost:21 || exit 1"]
       interval: 10s
       timeout: 30s
       retries: 5
