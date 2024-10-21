@@ -18,13 +18,21 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: setup database password
-      run: echo -n "${{ secrets.DB_PASS }}" >> srcs/secrets/database_password
+      run: echo -n "$DB_PASS" >> srcs/secrets/database_password
+      env:
+        DB_PASS: ${{ secrets.DB_PASS }}
     - name: setup wp user password
-      run: echo -n "${{ secrets.WP_USER_PASS }}" >> srcs/secrets/wp_user_password
+      run: echo -n "$WP_USER_PASS" >> srcs/secrets/wp_user_password
+      env:
+        WP_USER_PASS: ${{ secrets.WP_USER_PASS }}
     - name: setup wp admin password
-      run: echo -n "${{ secrets.WP_ADMIN_PASS }}" >> srcs/secrets/wp_admin_password
+      run: echo -n "$WP_ADMIN_PASS" >> srcs/secrets/wp_admin_password
+      env:
+        WP_ADMIN_PASS: ${{ secrets.WP_ADMIN_PASS }}
     - name: setup ftp password
-      run: echo -n "${{ secrets.FTP_PASS }}" >> srcs/secrets/ftp_password
+      run: echo -n "$FTP_PASS" >> srcs/secrets/ftp_password
+      env:
+        FTP_PASS: ${{ secrets.FTP_PASS }}
     - name: Write variables to .env file
       run: |
         echo "DB_NAME=${{ vars.DB_NAME }}" >> srcs/.env
