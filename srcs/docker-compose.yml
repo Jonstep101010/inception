@@ -157,10 +157,22 @@ services:
 volumes:
   database:
     name: ${MARIADB_VOLUME}
+    driver_opts:
+      type: none
+      device: $HOME/data/mariadb
+      o: bind
   website:
     name: ${WORDPRESS_VOLUME}
+    driver_opts:
+      type: none
+      device: $HOME/data/wordpress
+      o: bind
   redis_cache:
     name: ${REDIS_VOLUME}
+    driver_opts:
+      type: none
+      device: $HOME/data/redis
+      o: bind
 networks:
   inception:
     driver: bridge
