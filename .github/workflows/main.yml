@@ -48,4 +48,4 @@ jobs:
         echo "WORDPRESS_VOLUME=${{ vars.WORDPRESS_VOLUME }}" >> srcs/.env
         echo "REDIS_VOLUME=${{ vars.REDIS_VOLUME }}" >> srcs/.env
     - name: Build the docker containers
-      run: cd srcs && docker compose build && docker compose up --remove-orphans -d
+      run: make
