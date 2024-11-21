@@ -47,5 +47,7 @@ jobs:
         echo "MARIADB_VOLUME=${{ vars.MARIADB_VOLUME }}" >> srcs/.env
         echo "WORDPRESS_VOLUME=${{ vars.WORDPRESS_VOLUME }}" >> srcs/.env
         echo "REDIS_VOLUME=${{ vars.REDIS_VOLUME }}" >> srcs/.env
+    - name: Prepare for bind mount
+      run: mkdir -p $HOME/data/{mariadb,wordpress,redis}
     - name: Build the docker containers
       run: make

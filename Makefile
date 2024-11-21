@@ -1,5 +1,4 @@
 run:
-	mkdir -p ${HOME}/data/{mariadb,wordpress,redis}
 	cd srcs && docker compose build && docker compose up --remove-orphans -d
 
 mariadb-health:
