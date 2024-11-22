@@ -13,7 +13,7 @@ clean:
 	mkdir -p ${HOME}/data/{mariadb,wordpress,redis}
 
 fclean: clean
-	docker rmi srcs-mariadb:latest srcs-nginx:latest srcs-wordpress:latest
+	docker rmi mariadb:latest wordpress:latest nginx:latest redis:latest vsftpd:latest portfolio-zola:latest adminer:latest prometheus:latest mariadb-exporter:latest
 
 nuke: fclean
 	yes | docker system prune -a
