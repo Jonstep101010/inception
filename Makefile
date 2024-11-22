@@ -9,6 +9,8 @@ down:
 
 clean:
 	cd srcs && docker compose down -v
+	sudo rm -rf ${HOME}/data/
+	mkdir -p ${HOME}/data/{mariadb,wordpress,redis}
 
 fclean: clean
 	docker rmi srcs-mariadb:latest srcs-nginx:latest srcs-wordpress:latest
